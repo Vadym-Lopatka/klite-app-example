@@ -1,3 +1,4 @@
-Klite: a very light-weight (lite) non-blocking http framework for Kotlin coroutines on JVM.
+Klite is a lightweight (lite) non-blocking HTTP framework for Kotlin coroutines on JVM.
 
-This is a standalone exmaple of the usage
+The repo was created as a set-apart example of the "sample" module from the original repository and is entirely based on it.
+

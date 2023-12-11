@@ -27,7 +27,7 @@ dependencies {
 
     testImplementation("com.github.codeborne.klite:klite-jdbc-test:$kliteVersion")
     testImplementation("ch.tutteli.atrium:atrium-fluent:1.1.0")
-
+    testImplementation("io.mockk:mockk:1.13.8")
     testImplementation("org.junit.jupiter:junit-jupiter-engine:5.10.1")
 
 }

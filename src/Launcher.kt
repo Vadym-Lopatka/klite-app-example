@@ -32,6 +32,7 @@ fun sampleServer(port: Int = 8080) = Server(listen = InetSocketAddress(port)).ap
     register(HttpClient.newBuilder().connectTimeout(ofSeconds(5)).build())
 
     before<AdminChecker>()
+    before<TrailingSlashRemover>()
     after { ex, err -> ex.header("X-Error", err?.message ?: "none") }
 
     Id<Any>()

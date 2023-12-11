@@ -33,6 +33,8 @@ class ServerIntegrationTest {
     }
     expect { runBlocking { http.get<String>("/api/hello/params") } }.toThrow<IOException>()
       .messageToContain("""{"statusCode":400,"message":"required is required","reason":"Bad Request"}""")
+    expect { runBlocking { http.get<String>("/api/hello/") } }.toThrow<IOException>()
+      .messageToContain("""{"statusCode":302,"reason":"Found"}""")
 
     server.stop()
   }

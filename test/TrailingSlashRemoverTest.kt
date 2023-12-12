@@ -17,21 +17,28 @@ class TrailingSlashRemoverTest {
 
     @Test fun `should do nothing when trailing slash is absent`() {
         every { exchange.path } returns "/hello"
+
         runBlocking { trailingSlashRemover.before(exchange) }
+
         verify(exactly = 0) { exchange.redirect(any<String>()) }
     }
 
     @Test fun `should throw 400 BadRequest when several trailing slashes`() {
         every { exchange.path } returns "/hello//"
+
         expect { runBlocking { trailingSlashRemover.before(exchange) }}.toThrow<BadRequestException>()
             .messageToContain("Can't parse the path: /hello//")
+
         verify(exactly = 0) { exchange.redirect(any<String>()) }
+
     }
 
     @Test fun `should remove last slash`() {
         every { exchange.path } returns "/hello/"
         every { exchange.redirect(any<String>()) } answers { callOriginal() }
+
         expect { runBlocking { trailingSlashRemover.before(exchange) }}.toThrow<RedirectException>()
+
         verify(exactly = 1) { exchange.redirect("/hello") }
     }
 

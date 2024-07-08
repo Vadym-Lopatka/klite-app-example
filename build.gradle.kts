@@ -1,12 +1,21 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "1.9.20"
+    kotlin("jvm") version "2.0.0"
 }
 val mainClassName = "LauncherKt"
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_17
+    sourceCompatibility = JavaVersion.VERSION_11
+}
+
+tasks.withType<KotlinCompile> {
+    compilerOptions {
+        jvmTarget.set(JvmTarget.JVM_11)
+        freeCompilerArgs.add("-opt-in=kotlin.ExperimentalStdlibApi")
+        freeCompilerArgs.add("-Xcontext-receivers")
+    }
 }
 
 repositories {
@@ -23,20 +32,13 @@ dependencies {
     implementation("com.github.codeborne.klite:klite-json:$kliteVersion")
     implementation("com.github.codeborne.klite:klite-jackson:$kliteVersion")
     implementation("com.github.codeborne.klite:klite-jdbc:$kliteVersion")
-    implementation("org.postgresql:postgresql:42.7.1")
+    implementation("org.postgresql:postgresql:42.7.3")
 
     testImplementation("com.github.codeborne.klite:klite-jdbc-test:$kliteVersion")
-    testImplementation("ch.tutteli.atrium:atrium-fluent:1.1.0")
-    testImplementation("io.mockk:mockk:1.13.8")
-    testImplementation("org.junit.jupiter:junit-jupiter-engine:5.10.1")
+    testImplementation("ch.tutteli.atrium:atrium-fluent:1.2.0")
+    testImplementation("io.mockk:mockk:1.13.11")
+    testImplementation("org.junit.jupiter:junit-jupiter-engine:5.10.3")
 
-}
-
-tasks.withType<KotlinCompile> {
-    kotlinOptions {
-        freeCompilerArgs += "-Xjsr305=strict"
-        jvmTarget = "17"
-    }
 }
 
 sourceSets {

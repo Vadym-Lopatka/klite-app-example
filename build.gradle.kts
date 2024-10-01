@@ -2,7 +2,7 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "2.0.0"
+    kotlin("jvm") version "2.0.20"
 }
 val mainClassName = "LauncherKt"
 
@@ -24,7 +24,7 @@ repositories {
 }
 
 dependencies {
-    val kliteVersion = "master-SNAPSHOT" // you can put a released tag or commit hash here
+    val kliteVersion = "1.6.9" // you can put a released tag or commit hash here
     implementation("com.github.codeborne.klite:klite-server:$kliteVersion")
     implementation("com.github.codeborne.klite:klite-openapi:$kliteVersion")
     implementation("com.github.codeborne.klite:klite-slf4j:$kliteVersion")
@@ -32,12 +32,12 @@ dependencies {
     implementation("com.github.codeborne.klite:klite-json:$kliteVersion")
     implementation("com.github.codeborne.klite:klite-jackson:$kliteVersion")
     implementation("com.github.codeborne.klite:klite-jdbc:$kliteVersion")
-    implementation("org.postgresql:postgresql:42.7.3")
+    implementation("org.postgresql:postgresql:42.7.4")
 
     testImplementation("com.github.codeborne.klite:klite-jdbc-test:$kliteVersion")
     testImplementation("ch.tutteli.atrium:atrium-fluent:1.2.0")
-    testImplementation("io.mockk:mockk:1.13.11")
-    testImplementation("org.junit.jupiter:junit-jupiter-engine:5.10.3")
+    testImplementation("io.mockk:mockk:1.13.12")
+    testImplementation("org.junit.jupiter:junit-jupiter-engine:5.11.1")
 
 }
 
